@@ -1,14 +1,12 @@
-# Use lightweight Nginx image
-FROM nginx:stable-alpine
+# Use an official Nginx image from Docker Hub
+FROM nginx:latest
 
-# Remove default nginx website
-RUN rm -rf /usr/share/nginx/html/*
+# Copy your HTML file into the default Nginx folder
+COPY registration.html /usr/share/nginx/html/
 
-# Copy your website files into Nginx html directory
-COPY ./registration-form /usr/share/nginx/html
-
-# Expose port 80 (for web traffic)
+# Expose port 80 to access the website
 EXPOSE 80
 
-# Start Nginx server (default command)
+# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
+
